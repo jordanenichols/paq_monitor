@@ -45,7 +45,7 @@ uint8_t readline(char *buff, uint8_t maxbuff, uint16_t timeout = 0);
 void setup() {
   while (!Serial);
 
-  Serial.begin(115200);
+  Serial.begin(9600);
   Serial.println(F("FONA set baudrate"));
 
   Serial.println(F("First trying 115200 baud"));
