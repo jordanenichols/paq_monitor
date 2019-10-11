@@ -64,7 +64,7 @@ Adafruit_BluefruitLE_SPI ble(BLUEFRUIT_SPI_CS, BLUEFRUIT_SPI_IRQ, BLUEFRUIT_SPI_
 
 void setup()
 {
-  Serial.begin(115200);
+  Serial.begin(9600);
   Serial.println("PAQ Monitor BLE test");
 
   //Initialise the module
@@ -140,5 +140,5 @@ void loop()
   ble.print(sgp.TVOC);
   ble.print(" ");
   ble.println(sgp.eCO2);
-  delay(10);
+  delay(1000);
 }
