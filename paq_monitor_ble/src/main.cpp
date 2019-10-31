@@ -2,13 +2,14 @@
 #include <SPI.h>
 #include "Adafruit_BLE.h"
 #include "Adafruit_BluefruitLE_SPI.h"
-#include "Adafruit_BluefruitLE_UART.h"
 #include "BluefruitConfig.h"
 
 #include <Wire.h>
 #include "Adafruit_SGP30.h"
 
+BLEClientCts  bleCTime;
 Adafruit_SGP30 sgp;
+
 
 /* return absolute humidity [mg/m^3] with approximation formula
 * @param temperature [°C]
@@ -121,6 +122,8 @@ void setup()
 
   Serial.println("DATA mode enabled");
 
+  bleCTime.begin(); //get current time function
+
   if (sgp.begin())
   {
     Serial.println("SGP30 sensor enabled");
@@ -130,6 +133,12 @@ void setup()
 void loop()
 {
   sgp.IAQmeasure();
+
+  if (!ble.isConnected())
+  {
+    bleCTime.getCurrentTime();
+    bleCTime.getLocalTimeInfo();
+  }
 
   //Print data to serial monitor
   Serial.print(sgp.TVOC);
