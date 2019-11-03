@@ -159,7 +159,6 @@ void loop()
   {
     Serial.println(F("Waiting for GPS..."));
   }
-  Serial.println(F("GPS Aquired"));
 
   // Publish data
   Serial.println(F("Publishing data..."));
@@ -174,7 +173,7 @@ void loop()
   }
 
   Watchdog.disable();
-  delay(10000); //So as not to overload data limit on adafruit.io
+  delay(11000); //So as not to overload data limit on adafruit.io
   Watchdog.enable();
 }
 
@@ -357,5 +356,6 @@ float getMQ4(int analogPin)
 float getMQ2(int analogPin)
 {
   float sensorValue = analogRead(analogPin);
+  sensorValue = sensorValue/24.0;
   return sensorValue;
 }
